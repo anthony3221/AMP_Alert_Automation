@@ -1,0 +1,426 @@
+2018-09-17
+
+Summary:
+
+  Total detected threat event : 133
+
+    Threat Detected : 133
+
+
+  Total ioc event : 8
+
+    Executed malware : 3
+    Generic IOC : 2
+    Microsoft Word compromise : 1
+    Microsoft Word launched a shell : 1
+    Microsoft PowerPoint compromise : 1
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Groups:
+
+    1. A5302-SMPH-Admin-Audit
+       Number of entry : 74
+       Number of different host : 1
+
+       Host:
+          LOAN-HSL-D001:  
+	     Threat Detected : 74
+
+-----------------------------------------------------------------------------------------------
+    2. A5361-Orthopedics-and-Rehabilitation-Protect
+       Number of entry : 31
+       Number of different host : 4
+
+       Host:
+          DOO-SVSEA02.ortho.wisc.edu:  
+	     Threat Detected : 28
+          Christa’s MacBook Pro:  
+	     Threat Detected : 1
+          DOU-FileStatArc.ortho.wisc.edu:  
+	     Generic IOC : 1
+          Blaise's MacBook Air:  
+	     Threat Detected : 1
+
+-----------------------------------------------------------------------------------------------
+    3. A0224-UW-Communications-Audit
+       Number of entry : 10
+       Number of different host : 3
+
+       Host:
+          UMARK Rinehart:  
+	     Threat Detected : 4
+          UMARK Rinehart:  
+	     Executed malware : 1
+          UCOMM Lucas:  
+	     Threat Detected : 3
+          UCOMM Miller:  
+	     Threat Detected : 1
+          UCOMM Miller:  
+	     Executed malware : 1
+
+-----------------------------------------------------------------------------------------------
+    4. Audit
+       Number of entry : 7
+       Number of different host : 2
+
+       Host:
+          UWSC-MAGDA2.ad.wisc.edu:  
+	     Threat Detected : 4
+          UWSC-MAGDA2.ad.wisc.edu:  
+	     Executed malware : 1
+          LSS-VH275BAVIEM.ad.wisc.edu:  
+	     Threat Detected : 2
+
+-----------------------------------------------------------------------------------------------
+    5. A4850-LSS-Protect
+       Number of entry : 6
+       Number of different host : 2
+
+       Host:
+          LSS-HUM5557GRBA:  
+	     Threat Detected : 3
+          LSS-C02WV1KHJ1G6:  
+	     Threat Detected : 3
+
+-----------------------------------------------------------------------------------------------
+    6. A06-DoIT-DS-Protect
+       Number of entry : 4
+       Number of different host : 1
+
+       Host:
+          DDS-APPPKGR.ad.wisc.edu:  
+	     Threat Detected : 4
+
+-----------------------------------------------------------------------------------------------
+    7. A06-DoIT-Staff-Protect
+       Number of entry : 2
+       Number of different host : 1
+
+       Host:
+          DOIT-HPKQ1Q1.ad.wisc.edu:  
+	     Threat Detected : 2
+
+-----------------------------------------------------------------------------------------------
+    8. A5397-Surgery-Protect
+       Number of entry : 2
+       Number of different host : 1
+
+       Host:
+          DOS3470:  
+	     Microsoft Word launched a shell : 1
+          DOS3470:  
+	     Microsoft Word compromise : 1
+
+-----------------------------------------------------------------------------------------------
+    9. A5333-Human-Oncology-Protect
+       Number of entry : 2
+       Number of different host : 1
+
+       Host:
+          dho-osx-5bdb6:  
+	     Threat Detected : 2
+
+-----------------------------------------------------------------------------------------------
+    10. A45-Law-School-WithAV
+       Number of entry : 2
+       Number of different host : 2
+
+       Host:
+          Kathleen’s MacBook Pro:  
+	     Threat Detected : 1
+          LAW2378-0117.ad.wisc.edu:  
+	     Microsoft PowerPoint compromise : 1
+
+-----------------------------------------------------------------------------------------------
+    11. A5367-Pediatrics-Protect
+       Number of entry : 1
+       Number of different host : 1
+
+       Host:
+          DOP1745:  
+	     Generic IOC : 1
+
+-----------------------------------------------------------------------------------------------
+Details:
+
+   1 . A5302-SMPH-Admin-Audit : 74
+
+      Host:
+	A. LOAN-HSL-D001 : 74
+
+          a. Event Type : Threat Detected
+	     External IP : 128.104.104.178
+	     Network Address : {ip:128.104.104.178 mac:10:65:30:11:27:bb } 
+
+	     -> File Name : iview451_plugins_setup.exe
+		File Path : \\?\C:\Users\medschadmin\Downloads\iview451_plugins_setup.exe
+		SHA256 : 25fcdd3a7a52c505a827505a28cc93b2b7729559209e21f447d9c855a279279b
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+   2 . A5361-Orthopedics-and-Rehabilitation-Protect : 31
+
+      Host:
+	A. DOO-SVSEA02.ortho.wisc.edu : 28
+
+          a. Event Type : Threat Detected
+	     External IP : 144.92.106.121
+	     Network Address : {ip:144.92.106.121 mac:00:50:56:a7:79:53 } 
+
+	     -> File Name : Message20180917_151910682_2566270_6280.msg
+		File Path : \\?\C:\Program Files (x86)\Metalogix\MAM4Exchange\PamStore\FolderA20180917_151910682_1161067_6280\Message20180917_151910682_2566270_6280.msg
+		SHA256 : 4e952e7b9c84e6a711777e4bc965fa52992978404faff9f324a13c1037d2bd11
+
+	B. Christa’s MacBook Pro : 1
+
+          a. Event Type : Threat Detected
+	     External IP : 72.33.0.161
+	     Network Address : {ip:Unknown mac:ac:de:48:00:11:22 } {ip:10.138.233.165 mac:88:e9:fe:68:a0:b8 } {ip:Unknown mac:6a:00:b5:39:94:05 } 
+
+	     -> File Name : FedEx_Label_ID_454-123US.zip_renamed
+		File Path : /Users/cmw200/Library/Mail/V5/C0981ED6-884C-4F69-9C81-6259B8D68491/Inbox.mbox/512E2D30-41AD-4B67-B334-AED27B643756/Data/3/8/Attachments/83784/2/FedEx_Label_ID_454-123US.zip_renamed
+		SHA256 : d6578a66587d467f4a87cfa0ba36676d8e1aa9e4951516fffddbc4d60c228b7b
+
+	C. DOU-FileStatArc.ortho.wisc.edu : 1
+
+          a. Event Type : Generic IOC
+	     External IP : 144.92.106.47
+	     Network Address : {ip:144.92.106.47 mac:00:50:56:bf:e9:e6 } 
+
+	     -> File Name : powershell.exe
+		File Path : file:///C%3A/Windows/System32/WindowsPowerShell/v1.0/powershell.exe
+		SHA256 : ba4038fd20e474c047be8aad5bfacdb1bfc1ddbe12f803f473b7918d8d819436
+
+	D. Blaise's MacBook Air : 1
+
+          a. Event Type : Threat Detected
+	     External IP : 174.82.133.238
+	     Network Address : {ip:192.168.1.14 mac:98:e0:d9:8b:7a:41 } {ip:Unknown mac:9a:00:01:61:52:60 } 
+
+	     -> File Name : Bible -Faith Verses[OhYy].pdf
+		File Path : /private/var/folders/7b/1rxqz9q90sx3g0jp6tqdvgvh0000gn/T/com.microsoft.Outlook/Outlook Temp/Bible -Faith Verses[OhYy].pdf
+		SHA256 : d9e433322d3f3536090aed48c663805ca041fa2d759790c8928bc86422320cf1
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+   3 . A0224-UW-Communications-Audit : 10
+
+      Host:
+	A. UMARK Rinehart : 5
+
+          a. Event Type : Threat Detected
+	     External IP : 144.92.105.224
+	     Network Address : {ip:144.92.105.224 mac:10:dd:b1:a4:39:ad } {ip:Unknown mac:8c:2d:aa:5f:b8:81 } {ip:Unknown mac:32:00:17:8a:01:00 } 
+
+	     -> File Name : AppNOS
+		File Path : /Users/nancyrinehart/Library/Application Support/Smokyashan/Smokyashan.app/Contents/MacOS/AppNOS
+		SHA256 : a59db21ad2ebac40e600424208629e55d45603ef1b270e38299dcb8201c7986b
+
+
+          b. Event Type : Executed malware
+	     External IP : 144.92.105.224
+	     Network Address : {ip:144.92.105.224 mac:10:dd:b1:a4:39:ad } {ip:Unknown mac:8c:2d:aa:5f:b8:81 } {ip:Unknown mac:32:00:17:8a:01:00 } 
+
+	     -> File Name : MG
+		File Path : file:///Users/nancyrinehart/Library/Application%20Support/mg/MG.app/Contents/MacOS/MG
+		SHA256 : 784571f3df495a0adae51314c2183cd4d1be14063a5a1539c4a87bec8b883831
+
+	B. UCOMM Lucas : 3
+
+          a. Event Type : Threat Detected
+	     External IP : 47.41.162.19
+	     Network Address : {ip:192.168.1.11 mac:78:4f:43:7c:f8:72 } {ip:Unknown mac:92:00:28:22:d6:01 } {ip:Unknown mac:ac:de:48:00:11:22 } 
+
+	     -> File Name : MSEL_Package.doc
+		File Path : /Volumes/BOR 2017/Junk/MSEL_Package.doc
+		SHA256 : e5f3ee9273134d836ae6679b8a45c8dd928365e5f1a04013344ed0ea139408a8
+
+	C. UCOMM Miller : 2
+
+          a. Event Type : Threat Detected
+	     External IP : 144.92.105.213
+	     Network Address : {ip:144.92.105.213 mac:40:6c:8f:38:a3:bd } {ip:10.140.73.44 mac:b8:e8:56:38:86:38 } {ip:Unknown mac:72:00:01:2f:be:40 } 
+
+	     -> File Name : MG
+		File Path : /Users/jeffmiller/Library/Application Support/mg/MG.app/Contents/MacOS/MG
+		SHA256 : 784571f3df495a0adae51314c2183cd4d1be14063a5a1539c4a87bec8b883831
+
+
+          b. Event Type : Executed malware
+	     External IP : 144.92.105.213
+	     Network Address : {ip:144.92.105.213 mac:40:6c:8f:38:a3:bd } {ip:10.140.73.44 mac:b8:e8:56:38:86:38 } {ip:Unknown mac:72:00:01:2f:be:40 } 
+
+	     -> File Name : MG
+		File Path : file:///Users/jeffmiller/Library/Application%20Support/mg/MG.app/Contents/MacOS/MG
+		SHA256 : 784571f3df495a0adae51314c2183cd4d1be14063a5a1539c4a87bec8b883831
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+   4 . Audit : 7
+
+      Host:
+	A. UWSC-MAGDA2.ad.wisc.edu : 5
+
+          a. Event Type : Threat Detected
+	     External IP : 144.92.34.50
+	     Network Address : {ip:144.92.34.50 mac:34:17:eb:b2:8b:fb } 
+
+	     -> File Name : quicktemplatefinder.efd73a07dd854320aee5fffe06a6c3fc.exe
+		File Path : \\?\C:\Users\mdanielson4\AppData\Local\Microsoft\Windows\INetCache\IE\F0W2RMXO\quicktemplatefinder.efd73a07dd854320aee5fffe06a6c3fc.exe
+		SHA256 : d51403c02a26c8deb36d350a97ffece9dbafabd23a395fe08693baeeb538e145
+
+
+          b. Event Type : Executed malware
+	     External IP : 144.92.34.50
+	     Network Address : {ip:144.92.34.50 mac:34:17:eb:b2:8b:fb } 
+
+	     -> File Name : quicktemplatefinder.efd73a07dd854320aee5fffe06a6c3fc.exe
+		File Path : file:///C%3A/Users/mdanielson4/AppData/Local/Microsoft/Windows/INetCache/IE/F0W2RMXO/quicktemplatefinder.efd73a07dd854320aee5fffe06a6c3fc.exe
+		SHA256 : d51403c02a26c8deb36d350a97ffece9dbafabd23a395fe08693baeeb538e145
+
+	B. LSS-VH275BAVIEM.ad.wisc.edu : 2
+
+          a. Event Type : Threat Detected
+	     External IP : 144.92.15.170
+	     Network Address : {ip:144.92.15.170 mac:34:17:eb:a3:f3:04 } 
+
+	     -> File Name : tmp3fufpc
+		File Path : \\?\C:\Users\vlach-ou\AppData\Local\Temp\tmp3fufpc
+		SHA256 : cfbda72ca2211296aa091803a9f5054e51487c0ca7519117f822e25e3d5c6870
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+   5 . A4850-LSS-Protect : 6
+
+      Host:
+	A. LSS-HUM5557GRBA : 3
+
+          a. Event Type : Threat Detected
+	     External IP : 144.92.118.245
+	     Network Address : {ip:144.92.118.245 mac:34:17:eb:a0:a7:8a } 
+
+	     -> File Name : MyTransitGuide.6a3fc59890d74295a2c1cb64265cafe6.exe
+		File Path : \\?\C:\Users\grbarnes\AppData\Local\Microsoft\Windows\Temporary Internet Files\IE\6T760OS0\MyTransitGuide.6a3fc59890d74295a2c1cb64265cafe6.exe
+		SHA256 : 658f6bc03361b2d8ad944b538f099e5be4f71c5d8f8d018184c3a1aca33befff
+
+	B. LSS-C02WV1KHJ1G6 : 3
+
+          a. Event Type : Threat Detected
+	     External IP : 72.33.2.179
+	     Network Address : {ip:Unknown mac:78:7b:8a:dc:6a:12 } {ip:10.140.227.252 mac:14:20:5e:07:28:10 } {ip:Unknown mac:0a:00:a8:b0:93:00 } 
+
+	     -> File Name : BA5B6F12F4C1F5C3!101-BA5B6F12F4C1F5C3!7213-BA5B6F12F4C1F5C3!10108-b0d08c7b0f371e20ad613b68fc9ccc745b10f081.temp
+		File Path : /Users/hieyoonkim/Library/Application Support/OneDrive/tmp/BA5B6F12F4C1F5C3!101-BA5B6F12F4C1F5C3!7213-BA5B6F12F4C1F5C3!10108-b0d08c7b0f371e20ad613b68fc9ccc745b10f081.temp
+		SHA256 : 7ba9a804236ab66d497d79c4ebb832fd0135e22ea452848bb622c266197bd308
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+   6 . A06-DoIT-DS-Protect : 4
+
+      Host:
+	A. DDS-APPPKGR.ad.wisc.edu : 4
+
+          a. Event Type : Threat Detected
+	     External IP : 144.92.55.108
+	     Network Address : {ip:144.92.55.108 mac:00:15:5d:7a:1a:14 } 
+
+	     -> File Name : 3a6350a8-ba92-11e8-80ff-00155d7a1a14target.exe.3a6350a9-ba92-11e8-80ff-00155d7a1a14.tmp
+		File Path : \\?\C:\Windows\Temp\3a6350a7-ba92-11e8-80ff-00155d7a1a14\3a6350a8-ba92-11e8-80ff-00155d7a1a14target.exe.3a6350a9-ba92-11e8-80ff-00155d7a1a14.tmp
+		SHA256 : b9dca6aa60f04f2150f74150ed1b13e76d9aba4fee404047d534d72fe36a07a3
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+   7 . A06-DoIT-Staff-Protect : 2
+
+      Host:
+	A. DOIT-HPKQ1Q1.ad.wisc.edu : 2
+
+          a. Event Type : Threat Detected
+	     External IP : 144.92.67.74
+	     Network Address : {ip:144.92.67.74 mac:5c:26:0a:53:fa:85 } 
+
+	     -> File Name : gLpgY1p1.exe.part
+		File Path : \\?\C:\Users\mgwong\AppData\Local\Temp\gLpgY1p1.exe.part
+		SHA256 : 45bd13ca54f037a5ba70a60bfc4a72e65e42a45445ab092b1a712c3169a2d93e
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+   8 . A5397-Surgery-Protect : 2
+
+      Host:
+	A. DOS3470 : 2
+
+          a. Event Type : Microsoft Word launched a shell
+	     External IP : 128.104.87.2
+	     Network Address : {ip:128.104.87.2 mac:b8:ca:3a:90:cb:98 } 
+
+	     -> File Name : Unknown
+		File Path : Unknown
+		SHA256 : db06c3534964e3fc79d2763144ba53742d7fa250ca336f4a0fe724b75aaff386
+
+
+          b. Event Type : Microsoft Word compromise
+	     External IP : 128.104.87.2
+	     Network Address : {ip:128.104.87.2 mac:b8:ca:3a:90:cb:98 } 
+
+	     -> File Name : Unknown
+		File Path : Unknown
+		SHA256 : 55b4f963a7a461b955ae2abc3b3147fc2d57ae1782eb9a166c0daf61501f8d2b
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+   9 . A5333-Human-Oncology-Protect : 2
+
+      Host:
+	A. dho-osx-5bdb6 : 2
+
+          a. Event Type : Threat Detected
+	     External IP : 128.104.173.137
+	     Network Address : {ip:10.130.192.222 mac:c4:2c:03:31:85:3c } {ip:Unknown mac:d8:30:62:5b:9b:1c } 
+
+	     -> File Name : Risk Based IT Auditing, Tools, Frameworks and Best Practices.pdf
+		File Path : /private/var/folders/km/bhr_7q2j1hv_0hw7wkwkc55c_jf318/T/com.apple.mail/TemporaryItems/(A Document Being Saved By Mail)/Risk Based IT Auditing, Tools, Frameworks and Best Practices.pdf
+		SHA256 : ac221d053ea9a4e86a3af7725939e38f981cab20eada5986c52129be00918015
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+   10 . A45-Law-School-WithAV : 2
+
+      Host:
+	A. Kathleen’s MacBook Pro : 1
+
+          a. Event Type : Threat Detected
+	     External IP : 128.104.173.226
+	     Network Address : {ip:Unknown mac:40:6c:8f:1d:78:9c } {ip:Unknown mac:d2:00:16:ed:8c:e0 } {ip:10.128.64.155 mac:10:40:f3:af:5f:32 } 
+
+	     -> File Name : symLMAX5g
+		File Path : /private/var/tmp/symLMAX5g
+		SHA256 : 4d43e29c25a5373456903bfaf34890647e795515a94dcf1a1034d6d952b5dce0
+
+	B. LAW2378-0117.ad.wisc.edu : 1
+
+          a. Event Type : Microsoft PowerPoint compromise
+	     External IP : 128.104.95.103
+	     Network Address : {ip:128.104.95.103 mac:f4:8e:38:84:82:ce } 
+
+	     -> File Name : Unknown
+		File Path : Unknown
+		SHA256 : 82199367da09a4d0d70b5567ebd3f144428921636004f341edde5ba6051e715f
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+   11 . A5367-Pediatrics-Protect : 1
+
+      Host:
+	A. DOP1745 : 1
+
+          a. Event Type : Generic IOC
+	     External IP : 144.92.220.81
+	     Network Address : {ip:Unknown mac:f2:00:8c:22:d5:01 } {ip:Unknown mac:f2:00:8c:22:d5:00 } {ip:144.92.220.81 mac:0c:4d:e9:9f:bf:d2 } 
+
+	     -> File Name : chmod
+		File Path : file:///bin/chmod
+		SHA256 : 439df3a1ec05e056409125798bf28d95764ccba8e21ac90eb3ed7fe49aba2fe9
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
