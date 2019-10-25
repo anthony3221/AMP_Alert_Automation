@@ -8,6 +8,7 @@ from datetime import *
 import pymysql
 import os
 
+""" Send the report to the designated email """
 def send_report():
     s = smtplib.SMTP(host='smtp.wiscmail.wisc.edu')
     file_name = '{}-amp_alert.txt'.format(date.today())
@@ -25,6 +26,7 @@ def send_report():
 
     s.send_message(msg)
 
+""" Send the crash report to the designated email """
 def send_crash_report():
     s = smtplib.SMTP(host='smtp.wiscmail.wisc.edu')
     file_name = "{}-AMP_Crash_Log.txt".format(date.today())
