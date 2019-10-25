@@ -1,112 +1,111 @@
-import os 
+import os
 import sys
 import datetime
-from user_database import connect
+import database
+import parser
 from group import *
+from threshold_filter import *
 
 """ Create and write summary and details of today result in a txt file """
-def write_file(summary, entry_list): 
-    
+def generate_report(entry_list):
+
     file = open('{}-amp_alert.txt'.format(datetime.date.today()), 'w+')
-   
-    file.write(summary)
 
-    filtered_and_sorted_group = apply_threshold(entry_list)
+    # Overall count
+    overall_count = parser.get_summary(entry_list)
 
-    file.write(stringify_group_summary(filtered_and_sorted_group))
-    
-    file.write(stringify_result(filtered_and_sorted_group)) 
-    
+    # Sort group count
+    sorted_group_list = sort_by_group(entry_list) # List of groups
+    sorted_by_host_count = count_by_host(sorted_group_list) # Sorted by number of host in group
+
+
+    # Apply threshold filtering 
+    filter = Filter(sorted_by_host_count)
+
+    print("Applying threshold")
+    filter.run_threshold_filter()
+
+    filtered_group_list = filter.get_filtered_list()
+
+    # Stringify Summary
+    general_summary = stringify_overall_summary(overall_count)
+    group_summary = stringify_group_summary(filtered_group_list)
+
+    # Stringify Details
+    details = stringify_details(filtered_group_list)
+
+    # Write to report
+    file.write(general_summary)
+    file.write(group_summary)
+    file.write(details)
+
     file.close()
 
-def apply_threshold(entry_list):
-    sorted_group = sort_by_group(entry_list)
+""" Create and return a overall summary """
+def stringify_overall_summary(count):
 
-    for each in sorted_group:
-        each.apply_threshold()
+    string = ""
+    string += "AMP Report: {}\n\n".format(datetime.date.today())
+    string += "Overall Summary:\n"
 
-    return sorted_group
+    for each in count:
+        string += "\t{} : {}\n".format(each[0], each[1])
 
-""" Return a list of group sorted in descreasing order of number of entries """
-def sort_by_group(entry_list):
-    
-    # A list of group in decreasing order of their number of entries
-    group = [] 
-
-    # Use to store the count of entries for every different group
-    group_dict = {}
-
-    for each in entry_list:
-        group_dict[each.metadata['guid']] = []
-
-    for each in entry_list:
-        group_dict[each.metadata['guid']].append(each)
-
-    for name in group_dict:
-        group.append(Group(name, group_dict[name]))
-    
-    # Sort in terms of the number of entries for each group
-    group = sorted(group, key = lambda g : g.entry_count, reverse = True)
-    
-    return group
-
-""" Return a string of summary of numbers of entries each group has"""
-def stringify_group_summary(group_list):
-    
-    string = "Groups:\n\n"
-
-    index = 1
-
-    for group in group_list: 
-        if group.show_in_report == True:
-            string += "    {}. ".format(index) 
-            string += group.get_summary()
-
-            index += 1
-            string += "-----------------------------------------------------------------------------------------------\n"
-
+    string += "\n"
     return string
 
-""" Return a string of detail for today's result """ 
-def stringify_result(group_list):
-    
-    string = "Details:\n\n"
-    index = 1
+""" Create and return a overall summary """
+def stringify_group_summary(group_list):
+
+    string = ""
+    string += "Group Summary (Number of Host/Group):\n"
 
     for group in group_list:
-        if group.show_in_report == True:
-            string += "   {} . {} : {}\n".format(index, group.name, group.entry_count)
-            string += group.get_details()
+        string += "\t{} : {}\n".format(group.name, len(group.host_list))
+
+        for host in group.host_list:
+            string += "\t    Host: {}\n".format(host.name)
+
+            for eventType in host.event_type:
+                string += "\t\t{} ({})\n".format(eventType[0], len(eventType[-1]))
+
             string += "\n"
-            string += "-------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n"
-            index += 1
 
-    return string 
-            
-""" Sort the number of entry for each event type (For the general summary in txt file) """
-def sort_by_count_for_summary(d):
-    
-    remove_target = ['Vulnerable Application Detected']
-    count = []
-    wanted_event = {}
+    string += "\n"
+    return string
 
-    # Put remove target into end of the list 
-    for each in remove_target:
-        if each in d:
-            count.append(d[each])
-            d.pop(each)
+""" Sort groups by the number of host in the group """
+def count_by_host(sorted_group_list):
+    return sorted(sorted_group_list, key = lambda kv : len(kv.host_list), reverse = True)
 
-    # Remove event type with 0 count
-    for each in d:
-        if d[each] > 0: 
-            wanted_event[each] = d[each]
+""" Sort all entries into groups according to group id """
+def sort_by_group(entry_list):
+    group_dict = dict()
+    group_list = []
 
-    wanted_event = sorted(wanted_event.items(), key = lambda kv : kv[1], reverse = True)
+    for each in entry_list:
+        group = each.metadata["guid"]
 
-    if len(count) > 0:
-        for x in range(len(remove_target)):
-            wanted_event.append((remove_target[x], count[x]))
+        if not group in group_dict:
+            group_dict[group] = []
 
-    return wanted_event
+        group_dict[group].append(each)
 
+    group_dict = sorted(group_dict.items(), key = lambda kv : len(kv[1]), reverse = True)
 
+    for each in group_dict:
+        name = each[0]
+        entry_list = each[1]
+        group_list.append(Group(name, entry_list))
+
+    return group_list
+
+""" Return a string of details for each event in each group for each host """
+def stringify_details(group_list):
+    string = "Details:\n"
+
+    for each in group_list:
+        string += each.stringify()
+        string += "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n"
+
+    return string

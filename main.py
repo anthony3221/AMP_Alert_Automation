@@ -1,33 +1,39 @@
-#! /usr/bin/python3
-
 import config
-import entry_database
-import parse
-import notify
+import parser
+import database
+import json
 import txtfile
+import notify
+import datetime
+import os
 
 if __name__ == '__main__':
-    # 1. Set up and Get data
-    parse.setup_and_connect()
 
-    # 2. Parse data and Store data   
-    entry_list, summary = parse.generate_entry_list()
-    
-    entry_list = parse.get_group_name(entry_list)
-     
-    entry_database.inject_to_entry_database(entry_list)
-    
-    #3. Notify
+    try:
+        os.chdir(os.path.abspath("/data/applications/AMP"))
 
-    txtfile.write_file(summary, entry_list)
+        # Get and parse data
+        entry_list = parser.generate_entry_list()
+        print("Successfully got and parsed data")
 
-    recipient = notify.recipient
+        # Insert data
+        database.inject_to_database(entry_list)
+        print("Successfully inserted data to database")
 
-    for each in recipient:
-        notify.send_email(each)
+        # Display data
+        txtfile.generate_report(entry_list)
+        print("Successfully generated report")
 
-    """ TO-DO LIST """   
-    #1. Error handling 
-    #2. Notification System
-        # Group into 1/2 emails
-        # Send out notification
+        # Send Email
+        notify.send_report()
+        print("Successfully sent report")
+        print("Completed")
+
+    except Exception as e:
+        fname = "{}-AMP_Crash_Log.txt".format(datetime.date.today())
+        file = open(fname, 'w+')
+        file.write("{}\n".format(datetime.date.today()))
+        file.write("{}\n\n".format(str(e)))
+        file.close()
+        notify.send_crash_report()
+        print("Error Encountered, see crash log")

@@ -1,105 +1,60 @@
-import Threshold
-
 """ Class for host in each different group"""
-
-class Host : 
-    def __init__(self, name, entry_list):
-        self.name = name 
-        self.members = entry_list
-        self.entry_count = len(entry_list)
-
-        # For later use in sorting 
-        self.sorted_members = []
-        self.event_type_count = {}
-        self.event = {}
+class Host :
+    def __init__(self, name, ip, networkAddress, entry_list):
+        self.name = name
+        self.ip = ip
+        self.networkAddress = networkAddress
+        self.entries = entry_list
+        self.entry_count = len(self.entries)
+        self.event_type = dict()
 
         # Sort by event type of this host
         self.sort_by_event_type()
-        self.show_in_report = True
-
-
-    def apply_threshold(self):
-
-        threshold = Threshold.THRESHOLD
-        
-        for each in self.event_type_count:
-            #Fix Here
-            # if the specific event does not meet the threshold, no need to show in report
-            if each[0] in threshold and each[1] < threshold[each[0]]:
-                del self.event[each[0]]
-
-        self.show_in_report = self.should_display_in_file()
-
-    def should_display_in_file(self):
-        if self.event != {}:
-            return True
-        else:
-            return False
 
     """ Sort all the entries from this host by event type """
     def sort_by_event_type(self):
 
-        # Use to store the count of each event type
-        event_type_count = {}
-        # Use to store the the entry object of each event type
-        event = {}
+        for entry in self.entries:
+            eventType = entry.metadata['event_type']
+            if not eventType in self.event_type:
+                self.event_type[eventType] = list()
 
-        for each in self.members:
+            self.event_type[eventType].append(entry)
 
-            event_type = str(each.metadata['event_type'])
-            event[event_type] = []
-            event_type_count[event_type] = 0 
-        
-        for each in self.members:
-
-            event_type = str(each.metadata['event_type'])
-            event[event_type].append(each)
-            event_type_count[event_type] += 1
-
-        # Sort by the numeber of each event type in decreasing order
-        self.event_type_count = sorted(event_type_count.items(), key = lambda kv : kv[1], reverse = True)
-        
-        for each in self.event_type_count: 
-            event_type = each[0]
-            # A long list of entries in decreasing order of numbers of event type
-            self.sorted_members += event[event_type]
-        
-        # A dictionary of events in which key : name of event type, value : list of entry object of the correpsonding event type
-        # For stringify the details later
-        self.event = event 
+        self.event_type = sorted(self.event_type.items(), key = lambda x : len(x[-1]))
 
     """ Return a string for a short summary of total number of each event types for the host """
-    def get_summary(self):
-        string = "" 
+    def stringify(self):
+        string = ""
 
-        for each in self.event:
-
-            # Ignore if the event type vulnerable application detected
-            string += "          {}:  ".format(self.name)
-            string += "\n\t     {} : {}\n".format(each, len(self.event[each]))
+        for each in self.event_type:
+            string += self.entry_summary_string(each[0], each[-1])
 
         return string
-        
-    """ Return a string for a detailed description of all entries of the host except 'Vulnerable Application Detected' """
-    def get_details(self):
-        
+
+
+    """ Return a string that represents a summary of entry details of an event type without duplicate """
+    def entry_summary_string(self, event_type, list_of_entries):
+
         string = ""
-        index = 'a'
+        entry_store = dict()
+        entry_count = dict()
 
-        for each in self.event_type_count:
-            event_type = each[0]
+        for each in list_of_entries:
+            file_name = each.metadata['file_name']
 
-            if event_type in self.event:
-                string += "\n          {}. ".format(index)
-                string += "{} : {}\n".format('Event Type', event_type)
-                string += "\t     {} : {}\n".format('External IP', self.event[event_type][0].metadata['external_ip'])
-                string += "\t     {} : {}\n".format('Network Address', self.event[event_type][0].metadata['network_addresses'])
-                string += "\n"
+            if not file_name in entry_store:
+                entry_store[file_name] = each
+                entry_count[file_name] = 1
 
-                for entry in self.event[event_type]:
-                    string += entry.get_details()
-                    break
-                
-                index = chr(ord(index) + 1)
+            else:
+                entry_count[file_name] += 1
 
-        return string 
+        string += "\t      Event Type: {} ({})\n\n".format(event_type, len(list_of_entries))
+
+        for fname in entry_count:
+            entry = entry_store[fname]
+            count = entry_count[fname]
+            string += entry.stringify_with_count(count)
+
+        return string
